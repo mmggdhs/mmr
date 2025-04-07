@@ -42,7 +42,7 @@ class ProjectsController extends Controller{
         ]);
         return redirect('/myprojects');
     }
-    public function deleteproject(Request $request,string $id){
+    public function deleteproject(string $id){
  
         $project = Project::find($id);
         $project->forceDelete();
@@ -70,7 +70,7 @@ class ProjectsController extends Controller{
             $files = array_diff($files,['.','..']);
             // $files = scandir($filespath);
             // dd($files);
-
+            $name = $files[2];
             $filespath = storage_path('app/public/unzip/'.$files[2]);
 
             $files = File::files($filespath);
@@ -81,9 +81,25 @@ class ProjectsController extends Controller{
                     'content'=>File::get($f)
                 ];
             }
-            return view('pages.project',['project'=>$project,'files'=>$files]);   
+            return view('pages.project',['project'=>$project,'files'=>$files,'name'=>$name]);   
 
         }
        
+    }
+    public function downloadproject(string $name){
+        $zip = new ZipArchive;
+        $path =storage_path('app/public/unzip/'.$name);
+        $zippath =storage_path('app/public/unzip/'.$name.".zip");
+
+        if ($zip->open($zippath, ZipArchive::CREATE)== TRUE)
+        {
+            $files = File::files($path);
+            foreach ($files as $key => $value){
+                $relativeName = basename($value);
+                $zip->addFile($value, $relativeName);
+            }
+            $zip->close();
+        }
+        return response()->download($zippath)->deleteFileAfterSend();        
     }
 }

@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('/projects',[ProjectsController::class,'show']);
     Route::get('/project/{id}',[ProjectsController::class,'getproject']);
+    Route::get('/project/download/{name}',[ProjectsController::class,'downloadproject']);
 
     Route::middleware('auth')->
     controller(ProjectsController::class)->
