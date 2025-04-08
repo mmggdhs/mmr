@@ -7,7 +7,7 @@
             <div class="rounded-circle d-inline-block" style="width: 50px; height: 50px; background-color: #f0db4f;"></div>
                         <h3 class="card-title mt-3">{{$project->title}}</h3>
                         <p class="card-text">{{$project->content}}</p>
-            <div class="container mt-5 mb-5 shadow-sm p-2">
+            <div class="container mt-5 mb-5 shadow-sm p-3 h-100 "  >
                 <div class="card shadow-lg p-2 "> 
                     <div class="container mt-2 text-end">
                                 <a class="btn btn-success btn-lg" href="{{url('project/download',$name)}}">
@@ -16,15 +16,18 @@
                     </div>
                     <div class="row">
                         <!--  الفيديو -->
-                        <div class="col-6" style="border-right: 3px solid rgba(0, 0, 0, 0.5);">
+                        <div class="col-6  " style="border-right: 3px solid rgba(0, 0, 0, 0.5);">
                                     <h1>فديو الشرح</h1>
-                                    <iframe width="560" height="315" 
-                                        src="https://www.youtube.com/embed/dSS-o7vclxg" 
+                                    <div class="ratio ratio-16x9">
+                                    <iframe 
+                                    
+                                        src="https://www.youtube.com/embed/SEbY4-6rqxs" 
                                         title="YouTube video player" 
                                         frameborder="0" 
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                         allowfullscreen>
                                     </iframe>
+                                    </div>
                         </div>
                         <!-- ملفات المشاريع-->
                         <div class="col-6">
