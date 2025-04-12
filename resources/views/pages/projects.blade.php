@@ -5,7 +5,7 @@
     <section class="py-5 bg-dark">
         <div class="container text-center">
             <h2 class="mb-5 text-light">جميع المشاريع</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
                 <!-- Card -->
                 @foreach ($projects as $pro )
                         <x-card 

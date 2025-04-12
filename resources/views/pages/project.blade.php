@@ -18,15 +18,15 @@
                         <!--  الفيديو -->
                         <div class="col-6  " style="border-right: 3px solid rgba(0, 0, 0, 0.5);">
                                     <h1>فديو الشرح</h1>
-                                    <div class="ratio ratio-16x9">
-                                    <iframe 
-                                    
-                                        src="https://www.youtube.com/embed/SEbY4-6rqxs" 
-                                        title="YouTube video player" 
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                        allowfullscreen>
-                                    </iframe>
+                                                <div class="ratio ratio-16x9">
+                                                @if($video)
+                                <div class="video-container">
+                                    <video width="100%" controls controlsList="nodownload">
+                                        <source src="{{ $video }}" type="video/mp4">
+                                        <p>متصفحك لا يدعم عرض الفيديو.</p>
+                                    </video>
+                                </div>
+                            @endif
                                     </div>
                         </div>
                         <!-- ملفات المشاريع-->

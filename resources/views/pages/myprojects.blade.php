@@ -8,8 +8,8 @@
                         <img src="images/user.jpeg" alt="شعار المستخدم" class="img-fluid rounded-circle border border-primary" style="width: 150px; height: 150px;">
                     </div>
                     <div class="user-info ms-4">
-                        <h2>{{Auth::user()->name}}  أهلاً بك </h2>
-                        <p>@ {{Auth::user()->name}} </p>
+                        <h2>{{Auth::user()->name}} أهلاً بك</h2>
+
                         <p>مطور برامج مفتوحة المصدر، مهتم بتطوير مشاريع Python و JavaScript.</p>
                         <a href="#" class="btn btn-dark text-light">تعديل الملف الشخصي</a>
                     </div>
@@ -37,32 +37,69 @@
                                 </ul>
                             </div>
                             @endif
-                            <form action="/project/add" method="post" accept="application/json" enctype="multipart/form-data">
-                                @csrf
+                           <form action="/project/add" method="post" accept="application/json" enctype="multipart/form-data" class="bg-dark p-4 rounded shadow-lg text-light">
+                            @csrf
+                            <h2 class="mb-4 text-center">إضافة مشروع جديد</h2>
+
                             <div class="mb-3">
-                                <input type="text" class="form-control" name="title" id="title" placeholder="Title">
+                                <label for="title" class="form-label">عنوان المشروع</label>
+                                <input type="text" class="form-control" name="title" id="title" placeholder="أدخل عنوان المشروع">
                             </div>
+
                             <div class="mb-3">
-                                <textarea class="form-control" id="Content-text" name="content" placeholder="Content"></textarea>
+                                <label for="Content-text" class="form-label">وصف المشروع</label>
+                                <textarea class="form-control" id="Content-text" name="content" rows="4" placeholder="اكتب وصفًا مختصرًا عن المشروع"></textarea>
                             </div>
+
                             <div class="mb-3">
-                                <select class="form-select" name="lang" aria-label="Default select example">
-                                    <option selected>Select project tech</option>
-                                    <option value="javascript">javascript</option>
-                                    <option value="python">python</option>
-                                    <option value="php">php</option>
-                                    <option value="java">java</option>
-                                    <option value="html">html</option>
-                                    <option value="flutter">flutter</option>
-                                    <option value="css">css</option>
-                                  </select>
+                                <label for="lang" class="form-label">التقنية المستخدمة</label>
+                                <select class="form-select" name="lang" id="lang">
+                                    <option selected disabled>اختر تقنية المشروع</option>
+                                    <option value="javascript">JavaScript</option>
+                                    <option value="python">Python</option>
+                                    <option value="php">PHP</option>
+                                    <option value="java">Java</option>
+                                    <option value="html">HTML</option>
+                                    <option value="flutter">Flutter</option>
+                                    <option value="css">CSS</option>
+                                </select>
                             </div>
+
                             <div class="mb-3">
-                                <label class="label-control text-light" for="formFile">Project File</label>
-                                <input class="form-control" type="file" id="formFile" name="file">
+                                <label for="formFile" class="form-label">ملف المشروع (ZIP)</label>
+                                <input class="form-control" type="file" id="formFile" name="file" accept="application/zip">
                             </div>
-                                <input type="submit" class="btn btn-light w-100"  value="إضافة"/>
-                            </form>
+
+                            <div class="mb-3">
+    <label class="form-label d-block">فيديو المشروع</label>
+
+    <!-- زر مخصص لاختيار الفيديو -->
+    <label for="formvideo" class="btn btn-outline-light w-100">
+        📁 اختر فيديو المشروع (الحد 30MB)
+    </label>
+
+    <!-- العنصر الفعلي مرفوع ومخفي -->
+    <input type="file" class="d-none" id="formvideo" name="video" accept="video/*" onchange="showVideoName(this)">
+
+    <!-- هنا يظهر اسم الملف -->
+    <div id="video-name" class="text-info mt-2 fst-italic text-center" style="min-height: 1.5rem;">
+       
+    </div>
+</div>
+<script>
+    function showVideoName(input) {
+        const label = document.getElementById('video-name');
+        if (input.files.length > 0) {
+            label.innerHTML = `✅ تم اختيار <strong></strong>`;
+        } else {
+            label.innerHTML = "لم يتم اختيار أي فيديو بعد.";
+        }
+    }
+</script>
+
+                            <button type="submit" class="btn btn-primary w-100">إضافة المشروع</button>
+                        </form>
+
                         </div>
                  
                         </div>

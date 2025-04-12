@@ -6,6 +6,7 @@ use App\Models\Project;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File ;
 use Illuminate\Support\Facades\Storage;
@@ -26,18 +27,25 @@ class ProjectsController extends Controller{
     public function addproject(Request $request): RedirectResponse{
         $att = $request->validate([
             'title' => 'required|string',
-            'content'=> 'required|string|min:15',
-            'file'=> 'required'
+            'content'=> 'required|string|min:2',
+            'file'=> 'required',
+            'video'=>'required|file|mimetypes:video/mp4,video/avi,video/mpeg,video/quicktime|max:31200'
+        ],[
+            'video.required'=> 'يرجى رفع فيديو للمشروع.',
+            'video.mimetypes'=> 'صيغة الفيديو غير مدعومة. الصيغ المقبولة: mp4 و avi.',
+            'video.max'=> 'حجم الفيديو كبير جداً. الحد الأقصى هو 50 ميغابايت.',
         ]);
         // if($request->hasFile('file')){
             $file = $request->file('file')->store('/');
             $file = Storage::disk('local')->put('/',$request->file('file'));
         // }
+        $videoPath = $request->file('video')->store('videos', 'public');
         Project::create([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
             'dev_id' => Auth::user()->id,
-            'file'=>$file ??= null
+            'file'=>$file ??= null,
+            'video'=>$videoPath
 
         ]);
         return redirect('/myprojects');
@@ -58,6 +66,7 @@ class ProjectsController extends Controller{
 
         $file = $project->file;
         $path = Storage::disk('local')->path($file);
+        $video = $project->video ? asset('storage/' . $project->video):null;
 
         // unzip file 
         $zip = new ZipArchive;
@@ -81,7 +90,13 @@ class ProjectsController extends Controller{
                     'content'=>File::get($f)
                 ];
             }
-            return view('pages.project',['project'=>$project,'files'=>$files,'name'=>$name]);   
+            return view('pages.project',[
+                'project'=>$project,
+                'files'=>$files,
+                'name'=>$name,
+                'video'=>$video]); 
+         
+              
 
         }
        
