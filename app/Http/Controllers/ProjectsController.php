@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\File ;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
@@ -25,19 +26,23 @@ class ProjectsController extends Controller{
     }
     public function addproject(Request $request): RedirectResponse{
         $att = $request->validate([
-            'title' => 'required|string',
+            // 'title' => 'required|string',
             'content'=> 'required|string|min:15',
-            'file'=> 'required'
+            'file'=> 'required',
+            'lang'=>'required'
         ]);
         // if($request->hasFile('file')){
-            $file = $request->file('file')->store('/');
+            $file = $request->file('file');
+            $name = str_replace('.zip','',$file->getClientOriginalName());
+            $file = $file->store('/');
             $file = Storage::disk('local')->put('/',$request->file('file'));
         // }
         Project::create([
-            'title' => $request->input('title'),
+            'title' => $name,
             'content' => $request->input('content'),
             'dev_id' => Auth::user()->id,
-            'file'=>$file ??= null
+            'file'=>$file ??= null,
+            'lang'=>$request->input('lang')
 
         ]);
         return redirect('/myprojects');
@@ -54,8 +59,6 @@ class ProjectsController extends Controller{
     }
     public function getproject(string $id){
         $project = Project::find($id);
-        // $project = $project[$id];
-
         $file = $project->file;
         $path = Storage::disk('local')->path($file);
 
@@ -68,21 +71,12 @@ class ProjectsController extends Controller{
 
             $files = scandir($filespath);
             $files = array_diff($files,['.','..']);
-            // $files = scandir($filespath);
-            // dd($files);
-            $name = $files[2];
-            $filespath = storage_path('app/public/unzip/'.$files[2]);
-
+            $file = str_replace(".zip","",$file);
+            $name = $project->title;
+            $filespath = storage_path('app/public/unzip/'.$name);
             $files = File::files($filespath);
-            $content = [];
-            foreach($files as $f){
-                $content[]=[
-                    'filename'=>$f->getFilename(),
-                    'content'=>File::get($f)
-                ];
-            }
-            return view('pages.project',['project'=>$project,'files'=>$files,'name'=>$name]);   
-
+            return view('pages.project',['project'=>$project,'files'=>$files,'name'=>$name]);      
+            
         }
        
     }
@@ -101,5 +95,19 @@ class ProjectsController extends Controller{
             $zip->close();
         }
         return response()->download($zippath)->deleteFileAfterSend();        
+    }
+    function search(Request $request){
+      
+            $search = $request->input('search');
+            $lang = $request->input('lang');
+            // $results = null;
+            if(!isset($search)){
+                $results = Project::where('lang','like',"%$lang%")->get();
+
+            }else{
+                $results = Project::where('title','like',"%$search%")->get();
+            }
+
+            return view('pages.projects',['projects'=>$results]); 
     }
 }

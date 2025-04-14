@@ -38,30 +38,30 @@
                             </div>
                             @endif
                             <form action="/project/add" method="post" accept="application/json" enctype="multipart/form-data">
-                                @csrf
-                            <div class="mb-3">
-                                <input type="text" class="form-control" name="title" id="title" placeholder="Title">
-                            </div>
-                            <div class="mb-3">
-                                <textarea class="form-control" id="Content-text" name="content" placeholder="Content"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <select class="form-select" name="lang" aria-label="Default select example">
-                                    <option selected>Select project tech</option>
-                                    <option value="javascript">javascript</option>
-                                    <option value="python">python</option>
-                                    <option value="php">php</option>
-                                    <option value="java">java</option>
-                                    <option value="html">html</option>
-                                    <option value="flutter">flutter</option>
-                                    <option value="css">css</option>
-                                  </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="label-control text-light" for="formFile">Project File</label>
-                                <input class="form-control" type="file" id="formFile" name="file">
-                            </div>
-                                <input type="submit" class="btn btn-light w-100"  value="إضافة"/>
+                                    @csrf
+                                {{-- <div class="mb-3">
+                                    <input type="text" class="form-control" name="title" id="title" placeholder="Title">
+                                </div> --}}
+                                <div class="mb-3">
+                                    <textarea class="form-control" id="Content-text" name="content" placeholder="Content"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <select class="form-select" name="lang" aria-label="Default select example">
+                                        <option selected>Select project tech</option>
+                                        <option value="javascript">javascript</option>
+                                        <option value="python">python</option>
+                                        <option value="php">php</option>
+                                        <option value="java">java</option>
+                                        <option value="html">html</option>
+                                        <option value="flutter">flutter</option>
+                                        <option value="css">css</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="label-control text-light" for="formFile">Project File</label>
+                                    <input class="form-control" type="file" accept="application/zip" id="formFile" name="file">
+                                </div>
+                                    <input type="submit" class="btn btn-light w-100"  value="إضافة"/>
                             </form>
                         </div>
                  
@@ -74,7 +74,7 @@
                     <x-card 
                         title="{{$pro->title}}" 
                         text="{{$pro->content}}" 
-                        lang="جافا سكربت" 
+                        lang="{{$pro->lang}}" 
                         link="{{url('project',$pro->id)}}"
                         isAlow={{true}} 
                         del="{{url('project/delete',$pro->id)}}" 
