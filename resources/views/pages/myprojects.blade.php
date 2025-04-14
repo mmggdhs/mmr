@@ -66,36 +66,31 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="formFile" class="form-label">ملف المشروع (ZIP)</label>
+                                <label for="formFile" class="form-label" >ملف المشروع (ZIP)</label>
                                 <input class="form-control" type="file" id="formFile" name="file" accept="application/zip">
                             </div>
 
-                            <div class="mb-3">
-    <label class="form-label d-block">فيديو المشروع</label>
+                            <div class="mb-3" id="video_div">
+                            <label class="form-label d-block">فيديو المشروع</label>
+                            <label for="formvideo" class="btn bg-light w-100" id="lable_video">📁 اختر فيديو المشروع (الحد 30MB)</label>
+                            <input type="file" class="d-none" id="formvideo" name="video" accept="video/*" onchange="showVideoName(this)">
+                            <div id="video-name" class="text-info mt-2 fst-italic text-center" style="min-height: 1.5rem;"> 
+                            </div>
+                            </div>
+                            <script>
+                                function showVideoName(input) {
+                                    const label = document.getElementById('video-name');
+                                    if (input.files.length > 0) {
+                    
+                                        document.getElementById('lable_video').innerText=`${input.files[0].name}`;
+                                        label.innerHTML = `✅ تم اختيار <strong></strong>`;
+                                       
 
-    <!-- زر مخصص لاختيار الفيديو -->
-    <label for="formvideo" class="btn btn-outline-light w-100">
-        📁 اختر فيديو المشروع (الحد 30MB)
-    </label>
-
-    <!-- العنصر الفعلي مرفوع ومخفي -->
-    <input type="file" class="d-none" id="formvideo" name="video" accept="video/*" onchange="showVideoName(this)">
-
-    <!-- هنا يظهر اسم الملف -->
-    <div id="video-name" class="text-info mt-2 fst-italic text-center" style="min-height: 1.5rem;">
-       
-    </div>
-</div>
-<script>
-    function showVideoName(input) {
-        const label = document.getElementById('video-name');
-        if (input.files.length > 0) {
-            label.innerHTML = `✅ تم اختيار <strong></strong>`;
-        } else {
-            label.innerHTML = "لم يتم اختيار أي فيديو بعد.";
-        }
-    }
-</script>
+                                    } else {
+                                        label.innerHTML = "لم يتم اختيار أي فيديو بعد.";
+                                    }
+                                }
+                            </script>
 
                             <button type="submit" class="btn btn-primary w-100">إضافة المشروع</button>
                         </form>
