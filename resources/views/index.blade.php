@@ -23,15 +23,17 @@
           </div>
         </div> --}}
         @isset($projects)
-          @for ($i = 0;$i<2;$i++)
-              <x-card 
-                title="{{$projects[$i]->title}}"
-                text="{{$projects[$i]->content}}"
-                lang="{{$projects[$i]->lang}}"
-                link="{{url('project',$projects[$i]->id)}}"
-                isAlow={{false}}
-              />
-          @endfor
+          @if($projects->count() > 2)
+              @for ($i = 0;$i<3;$i++)
+                <x-card 
+                  title="{{$projects[$i]->title}}"
+                  text="{{$projects[$i]->content}}"
+                  lang="{{$projects[$i]->lang}}"
+                  link="{{url('project',$projects[$i]->id)}}"
+                  isAlow={{false}}
+                />
+              @endfor
+          @endif
         @endisset
   </section>
   <!-- Stats Section -->

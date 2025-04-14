@@ -10,7 +10,9 @@ class  Project extends Model{
     use HasFactory;
 
     protected $table = 'projects';
-    protected $fillable = ['title','content','dev_id','file','video'];
+
+    protected $fillable = ['title','content','dev_id','file','video','lang'];
+
     protected $casts = [
         'date'=> 'datetime:Y-m-d'
     ];

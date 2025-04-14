@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\File ;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
@@ -29,6 +30,7 @@ class ProjectsController extends Controller{
             'title' => 'required|string',
             'content'=> 'required|string|min:2',
             'file'=> 'required',
+            'lang'=>'required',
             'video'=>'required|file|mimetypes:video/mp4,video/avi,video/mpeg,video/quicktime|max:31200'
         ],[
             'video.required'=> 'يرجى رفع فيديو للمشروع.',
@@ -36,16 +38,19 @@ class ProjectsController extends Controller{
             'video.max'=> 'حجم الفيديو كبير جداً. الحد الأقصى هو 50 ميغابايت.',
         ]);
         // if($request->hasFile('file')){
-            $file = $request->file('file')->store('/');
+            $file = $request->file('file');
+            $name = str_replace('.zip','',$file->getClientOriginalName());
+            $file = $file->store('/');
             $file = Storage::disk('local')->put('/',$request->file('file'));
         // }
         $videoPath = $request->file('video')->store('videos', 'public');
         Project::create([
-            'title' => $request->input('title'),
+            'title' => $name,
             'content' => $request->input('content'),
             'dev_id' => Auth::user()->id,
             'file'=>$file ??= null,
-            'video'=>$videoPath
+            'video'=>$videoPath,
+            'lang'=>$request->input('lang')
 
         ]);
         return redirect('/myprojects');
@@ -62,8 +67,6 @@ class ProjectsController extends Controller{
     }
     public function getproject(string $id){
         $project = Project::find($id);
-        // $project = $project[$id];
-
         $file = $project->file;
         $path = Storage::disk('local')->path($file);
         $video = $project->video ? asset('storage/' . $project->video):null;
@@ -77,12 +80,11 @@ class ProjectsController extends Controller{
 
             $files = scandir($filespath);
             $files = array_diff($files,['.','..']);
-            // $files = scandir($filespath);
-            // dd($files);
-            $name = $files[2];
-            $filespath = storage_path('app/public/unzip/'.$files[2]);
-
+            $file = str_replace(".zip","",$file);
+            $name = $project->title;
+            $filespath = storage_path('app/public/unzip/'.$name);
             $files = File::files($filespath);
+
             $content = [];
             foreach($files as $f){
                 $content[]=[
@@ -95,8 +97,8 @@ class ProjectsController extends Controller{
                 'files'=>$files,
                 'name'=>$name,
                 'video'=>$video]); 
-         
-              
+            
+            
 
         }
        
@@ -116,5 +118,19 @@ class ProjectsController extends Controller{
             $zip->close();
         }
         return response()->download($zippath)->deleteFileAfterSend();        
+    }
+    function search(Request $request){
+      
+            $search = $request->input('search');
+            $lang = $request->input('lang');
+            // $results = null;
+            if(!isset($search)){
+                $results = Project::where('lang','like',"%$lang%")->get();
+
+            }else{
+                $results = Project::where('title','like',"%$search%")->get();
+            }
+
+            return view('pages.projects',['projects'=>$results]); 
     }
 }

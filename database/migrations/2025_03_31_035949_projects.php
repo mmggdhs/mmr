@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id();
             $table->integer('dev_id')->unsigned();
             $table->string('title')->index();
+            $table->string('lang')->index();
             $table->longText('content');
             $table->timestamp('date')->useCurrent();
-            $table->string('file');
+
             $table->string('video');
+
+            $table->longText('file');
+
             $table->foreign('dev_id')->references('id')->on('users')->onDelete('SET NULL');
         });
     }

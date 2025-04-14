@@ -11,7 +11,7 @@
                         <x-card 
                             title="{{$pro->title}}" 
                             text="{{$pro->content}}" 
-                            lang="جافا سكربت" 
+                            lang="{{$pro->lang}}" 
                             link="{{url('project',$pro->id)}}" 
                             isAlow={{false}}
                         />  

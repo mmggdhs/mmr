@@ -37,6 +37,7 @@
                                 </ul>
                             </div>
                             @endif
+
                            <form action="/project/add" method="post" accept="application/json" enctype="multipart/form-data" class="bg-dark p-4 rounded shadow-lg text-light">
                             @csrf
                             <h2 class="mb-4 text-center">إضافة مشروع جديد</h2>
@@ -95,6 +96,7 @@
                             <button type="submit" class="btn btn-primary w-100">إضافة المشروع</button>
                         </form>
 
+
                         </div>
                  
                         </div>
@@ -106,7 +108,7 @@
                     <x-card 
                         title="{{$pro->title}}" 
                         text="{{$pro->content}}" 
-                        lang="جافا سكربت" 
+                        lang="{{$pro->lang}}" 
                         link="{{url('project',$pro->id)}}"
                         isAlow={{true}} 
                         del="{{url('project/delete',$pro->id)}}" 
