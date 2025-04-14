@@ -42,10 +42,10 @@
                             @csrf
                             <h2 class="mb-4 text-center">إضافة مشروع جديد</h2>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="title" class="form-label">عنوان المشروع</label>
                                 <input type="text" class="form-control" name="title" id="title" placeholder="أدخل عنوان المشروع">
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label for="Content-text" class="form-label">وصف المشروع</label>
