@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
     });
     Route::post('/signin',[UserController::class, 'sign']);
     Route::get('/logout',[UserController::class, 'logout']);
-
     Route::get('/projects',[ProjectsController::class,'show']);
     Route::get('/project/{id}',[ProjectsController::class,'getproject']);
     Route::get('/project/download/{name}',[ProjectsController::class,'downloadproject']);
@@ -28,8 +27,8 @@ use Illuminate\Support\Facades\Route;
     Route::middleware('auth')->
     controller(ProjectsController::class)->
     group(function(){
-        Route::get('/myprojects','showmyproject');
-        Route::group(['prefix'=>'project','as'=>'project'],function(){
+            Route::get('/myprojects','showmyproject');
+            Route::group(['prefix'=>'project','as'=>'project'],function(){
             Route::post('/add','addproject');
             Route::delete('/delete/{id}','deleteproject');
         });

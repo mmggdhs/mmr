@@ -16,7 +16,9 @@ class UserController extends Controller{
     public function home(Request $request)
     {
         $projects = Project::all();
-            return view('index',['projects'=>$projects]);
+        $projectCount = Project::count();
+        $userCount =user::count();
+            return view('index',['projects'=>$projects,'projectCount' => $projectCount,'userCount'=>$userCount]);
     }
 
     public function login(Request $request)

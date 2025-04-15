@@ -18,11 +18,8 @@ return new class extends Migration
             $table->string('lang')->index();
             $table->longText('content');
             $table->timestamp('date')->useCurrent();
-
             $table->string('video');
-
             $table->longText('file');
-
             $table->foreign('dev_id')->references('id')->on('users')->onDelete('SET NULL');
         });
     }

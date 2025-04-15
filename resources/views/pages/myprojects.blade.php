@@ -78,6 +78,25 @@
                             <div id="video-name" class="text-info mt-2 fst-italic text-center" style="min-height: 1.5rem;"> 
                             </div>
                             </div>
+                            <div class="mb-3">
+                            <div class="mb-3">
+                        <label class="form-label">هل لديك رابط لمشروعك أو موقعك؟</label>
+                        <br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="has_link" id="link_yes" value="yes" onchange="toggleLinkInput()">
+                            <label class="form-check-label" for="link_yes">نعم</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="has_link" id="link_no" value="no" onchange="toggleLinkInput()" checked>
+                            <label class="form-check-label" for="has_link_no">لا</label>
+                        </div>
+                    </div>
+
+                 
+                    <div class="mb-3" id="link_field" style="display: none;">
+                        <label for="project_link" class="form-label">رابط المشروع أو الموقع</label>
+                        <input type="url" class="form-control" id="project_link" name="project_link" placeholder="أدخل الرابط هنا" />
+                    </div>
                             <script>
                                 function showVideoName(input) {
                                     const label = document.getElementById('video-name');
@@ -90,7 +109,19 @@
                                     } else {
                                         label.innerHTML = "لم يتم اختيار أي فيديو بعد.";
                                     }
-                                }
+                                    }
+                                    // عرض تاق كتابة الرابط
+                                        function toggleLinkInput() {
+                                        var yesRadio = document.getElementById('link_yes');
+                                        var linkField = document.getElementById('link_field');
+                                        
+                                       
+                                        if (yesRadio.checked) {
+                                            linkField.style.display = 'block';
+                                        } else {
+                                            linkField.style.display = 'none';
+                                        }
+                                    }
                             </script>
 
                             <button type="submit" class="btn btn-primary w-100">إضافة المشروع</button>

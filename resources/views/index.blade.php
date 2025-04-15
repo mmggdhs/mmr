@@ -39,8 +39,8 @@
   <!-- Stats Section -->
   <section class="stats bg-light py-5">
     <div class="container text-center">
-      <h1>ابرزالخدمات التي يقدمهاالموقع</h1>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">
+      <h1>ابرز الخدمات التي يقدمها الموقع</h1>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4 justify-content-center">
         <div class="col ">
           <div class="card p-4 shadow-sm bg-dark text-light">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600 mb-4">
@@ -75,15 +75,7 @@
             <p class="card-text">تواصل مع مطورين من جميع أنحاء العالم</p>
           </div>
         </div>
-        <div class="col">
-          <div class="card p-4 shadow-sm bg-dark text-light">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600 mb-4">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
-            </svg>
-            <h3 class="card-title">حماية آمنة</h3>
-            <p class="card-text">حماية كاملة لملفاتك ومشاريعك</p>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
@@ -95,13 +87,13 @@
         <div class="col ">
           <div class="card shadow-sm p-4 bg-light text-dark">
             <h3 class="card-title">المستودعات</h3>
-            <p class="card-text">56</p>
+            <p class="card-text">  {{ $projectCount }} </p>
           </div>
         </div>
         <div class="col">
           <div class="card shadow-sm p-4 bg-light text-dark">
             <h3 class="card-title">المتعاونين</h3>
-            <p class="card-text">120</p>
+            <p class="card-text">{{ $userCount }}</p>
           </div>
         </div>
         <div class="col">
