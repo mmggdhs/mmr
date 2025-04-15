@@ -93,7 +93,7 @@
     </nav>
   </header>
         {{  $slot }}
-  <footer class="footer py-4 bg-light text-dark text-center">
+  <footer class="footer py-4 bg-light text-dark text-center ">
     <div class="container">
       <p> .&copy;open project  2025 جميع الحقوق محفوظة ل </p>
     </div>
