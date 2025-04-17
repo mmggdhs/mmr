@@ -4,16 +4,10 @@
 <div class="container mt-5 mb-5 ">
     <div class="card shadow-lg bg-light">
         <div class="card-body text-center text-dark">
-            <div class="rounded-circle d-inline-block" style="width: 50px; height: 50px; background-color: #f0db4f;"></div>
-                        <h3 class="card-title mt-3">{{$project->title}}</h3>
-                        <p class="card-text">{{$project->content}}</p>
+            
             <div class="container mt-5 mb-5 shadow-sm p-3 h-100 "  >
                 <div class="card shadow-lg p-2 "> 
-                    <div class="container mt-2 text-end">
-                                <a class="btn btn-success btn-lg" href="{{url('project/download',$name)}}">
-                                    <i class="bi bi-download"></i> تحميل
-                                </a>
-                    </div>
+                  
                     <div class="row">
                         <!--  الفيديو -->
                         <div class="col-6  " style="border-right: 3px solid rgba(0, 0, 0, 0.5);">
@@ -31,7 +25,20 @@
                         </div>
                         <!-- ملفات المشاريع-->
                         <div class="col-6">
-                                    <h1>الملفات</h1>
+                        <div class="container mt-2 text-end">
+                                <a class="btn btn-success btn-lg" href="{{url('project/download',$name)}}">
+                                    <i class="bi bi-download"></i> تحميل
+                                </a>
+                    </div>
+                        <div class="rounded-circle d-inline-block" style="width: 50px; height: 50px; background-color: #f0db4f;"></div>
+                        <h3 class="card-title mt-3">{{$project->title}}</h3>
+                        <p class="card-text">{{$project->content}}</p>
+                        <a href="{{ $link }}" target="_blank">{{ $link }}</a>
+                        </div> 
+                    </div>
+                    <!--  تاق عرض ملفات المشروع  -->
+                    <div class="col-12 mt-5">
+                    <h1>الملفات</h1>
                                     <div class="accordion" id="accordionPanelsStayOpenExample">
                                         @foreach ($files as $index => $file)
                                             <div class="accordion-item">
@@ -48,8 +55,8 @@
                                             </div>
                                         @endforeach
                                     </div>
-                        </div>
                     </div>
+                    
                 </div>
             </div>           
         </div>

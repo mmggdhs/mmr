@@ -27,11 +27,11 @@ class ProjectsController extends Controller{
     }
     public function addproject(Request $request): RedirectResponse{
         $att = $request->validate([
-            'title' => 'required|string',
             'content'=> 'required|string|min:2',
             'file'=> 'required',
             'lang'=>'required',
-            'video'=>'required|file|mimetypes:video/mp4,video/avi,video/mpeg,video/quicktime|max:31200'
+            'video'=>'required|file|mimetypes:video/mp4,video/avi,video/mpeg,video/quicktime|max:31200',
+            'link'=>''
         ],[
             'video.required'=> 'يرجى رفع فيديو للمشروع.',
             'video.mimetypes'=> 'صيغة الفيديو غير مدعومة. الصيغ المقبولة: mp4 و avi.',
@@ -50,7 +50,8 @@ class ProjectsController extends Controller{
             'dev_id' => Auth::user()->id,
             'file'=>$file ??= null,
             'video'=>$videoPath,
-            'lang'=>$request->input('lang')
+            'lang'=>$request->input('lang'),
+            'link'=>$request->input('link')
 
         ]);
         return redirect('/myprojects');
@@ -68,6 +69,7 @@ class ProjectsController extends Controller{
     public function getproject(string $id){
         $project = Project::find($id);
         $file = $project->file;
+        $link=$project->link;
         $path = Storage::disk('local')->path($file);
         $video = $project->video ? asset('storage/' . $project->video):null;
 
@@ -96,10 +98,10 @@ class ProjectsController extends Controller{
                 'project'=>$project,
                 'files'=>$files,
                 'name'=>$name,
-                'video'=>$video]); 
+                'video'=>$video,
+            'link'=>$link]); 
             
             
-
         }
        
     }

@@ -79,7 +79,6 @@
                             </div>
                             </div>
                             <div class="mb-3">
-                            <div class="mb-3">
                         <label class="form-label">هل لديك رابط لمشروعك أو موقعك؟</label>
                         <br>
                         <div class="form-check form-check-inline">
@@ -95,7 +94,7 @@
                  
                     <div class="mb-3" id="link_field" style="display: none;">
                         <label for="project_link" class="form-label">رابط المشروع أو الموقع</label>
-                        <input type="url" class="form-control" id="project_link" name="project_link" placeholder="أدخل الرابط هنا" />
+                        <input type="url" class="form-control" id="link" name="link" placeholder="أدخل الرابط هنا" />
                     </div>
                             <script>
                                 function showVideoName(input) {
@@ -133,7 +132,7 @@
                         </div>
                     </div>
                 </div>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 <!-- File Card 1 -->
                 @foreach ($projects as $pro )
                     <x-card 
@@ -147,5 +146,6 @@
                 @endforeach
             </div>
         </div>
+       
     </section>
 </x-layout>

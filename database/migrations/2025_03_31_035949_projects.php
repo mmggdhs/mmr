@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('date')->useCurrent();
             $table->string('video');
             $table->longText('file');
+            $table->string(('link'))->nullable();
             $table->foreign('dev_id')->references('id')->on('users')->onDelete('SET NULL');
         });
     }

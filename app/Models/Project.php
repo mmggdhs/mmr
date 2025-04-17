@@ -11,7 +11,7 @@ class  Project extends Model{
 
     protected $table = 'projects';
 
-    protected $fillable = ['title','content','dev_id','file','video','lang'];
+    protected $fillable = ['title','content','dev_id','file','video','lang','link'];
 
     protected $casts = [
         'date'=> 'datetime:Y-m-d'
