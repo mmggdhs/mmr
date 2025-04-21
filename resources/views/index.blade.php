@@ -41,8 +41,9 @@
     <div class="container text-center">
       <h1>ابرز الخدمات التي يقدمها الموقع</h1>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4 justify-content-center">
-        <div class="col ">
-          <div class="card p-4 shadow-sm bg-dark text-light">
+        <!-- Card 1 -->
+        <div class="col">
+          <div class="card p-4 shadow-sm bg-dark text-light service-card" data-bs-toggle="modal" data-bs-target="#modal1">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600 mb-4">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="17 8 12 3 7 8"/>
@@ -52,8 +53,30 @@
             <p class="card-text">رفع ملفاتك ومشاريعك بسرعة وسهولة</p>
           </div>
         </div>
+
+        <!-- Modal 1 -->
+        <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal1Label">رفع سريع</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>هنا يمكنك رفع ملفاتك ومشاريعك بكل سهولة وسرعة. يمكن أن تدعم هذه الخدمة أنواع متعددة من الملفات مثل الصور والفيديوهات والمستندات.</p>
+                <p>تفاصيل إضافية: توفر الخدمة دعمًا كبيرًا من حيث السرعة والأمان. يمكنك رفع الملفات بسرعة عبر الإنترنت وتخزينها بسهولة على الخوادم.</p>
+                <a href="myprojects">انتقل لرفع المشاريع</a>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
         <div class="col">
-          <div class="card p-4 shadow-sm bg-dark text-light">
+          <div class="card p-4 shadow-sm bg-dark text-light service-card" data-bs-toggle="modal" data-bs-target="#modal2">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600 mb-4">
               <path d="m18 16 4-4-4-4"/>
               <path d="m6 8-4 4 4 4"/>
@@ -63,8 +86,30 @@
             <p class="card-text">اكتشف مشاريع في مختلف التقنيات</p>
           </div>
         </div>
+
+        <!-- Modal 2 -->
+        <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal2Label">مشاريع متنوعة</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>في هذا القسم، يمكنك استكشاف مشاريع متعددة في مختلف التقنيات مثل JavaScript، Python، وC++. اختر من بين العديد من المشاريع لتطوير مهاراتك.</p>
+                <p>تفاصيل إضافية: المشاريع تشمل تطبيقات ويب، أدوات مفتوحة المصدر، وأدوات لتحسين الإنتاجية، وغيرها من التقنيات المتنوعة.</p>
+                <a href="projects">انتقل لصفحة عرض المشاريع</a>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
         <div class="col">
-          <div class="card p-4 shadow-sm bg-dark text-light">
+          <div class="card p-4 shadow-sm bg-dark text-light service-card" data-bs-toggle="modal" data-bs-target="#modal3">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600 mb-4">
               <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
               <circle cx="9" cy="7" r="4"/>
@@ -76,8 +121,30 @@
           </div>
         </div>
 
+        <!-- Modal 3 -->
+        <div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="modal3Label" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal3Label">مجتمع المطورين</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>هذا القسم يتيح لك الفرصة للتواصل مع مطورين من جميع أنحاء العالم، سواء عبر المنتديات أو من خلال المشاريع المشتركة. كن جزءًا من مجتمع عالمي يشارك في نفس الأهداف والاهتمامات.</p>
+                <p>تفاصيل إضافية: يمكنك الحصول على ملاحظات فورية، والمشاركة في مشاريع مفتوحة المصدر، والتعلم من المطورين الآخرين.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+       
       </div>
     </div>
+  </section>
   </section>
   <!-- Stats Section -->
   <section class="stats py-5 bg-dark text-light">

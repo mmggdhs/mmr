@@ -26,14 +26,19 @@
                         <!-- ملفات المشاريع-->
                         <div class="col-6">
                         <div class="container mt-2 text-end">
+                        <a href="{{ $link }}" target="_blank">{{ $link }}</a>
                                 <a class="btn btn-success btn-lg" href="{{url('project/download',$name)}}">
                                     <i class="bi bi-download"></i> تحميل
                                 </a>
+                                <button type="button" class="btn btn-danger text-dark btn-lg ms-2" data-bs-toggle="modal" data-bs-target="#reportModal">
+                            <i class="bi bi-flag"></i> إبلاغ
+                        </button>
+                        
                     </div>
                         <div class="rounded-circle d-inline-block" style="width: 50px; height: 50px; background-color: #f0db4f;"></div>
                         <h3 class="card-title mt-3">{{$project->title}}</h3>
                         <p class="card-text">{{$project->content}}</p>
-                        <a href="{{ $link }}" target="_blank">{{ $link }}</a>
+                        
                         </div> 
                     </div>
                     <!--  تاق عرض ملفات المشروع  -->
@@ -62,4 +67,42 @@
         </div>
     </div>    
 </div>
+
 </x-layout>
+<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reportModalLabel">إبلاغ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Form to report -->
+                <form method="POST">
+                    @csrf
+                    <!-- Name field -->
+                    <div class="mb-3">
+                        <label for="name" class="form-label">الاسم</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="أدخل أسمك" required>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">البريد الإلكتروني</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="أدخل بريدك الإلكتروني" required>
+                    </div>
+
+                    <!-- Report description -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">تفاصيل البلاغ</label>
+                        <textarea class="form-control" name="description" id="description" rows="4" placeholder="أدخل تفاصيل البلاغ" required></textarea>
+                    </div>
+
+                    <!-- Submit button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-dark text-light">إرسال البلاغ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
