@@ -147,10 +147,10 @@
   </section>
   </section>
   <!-- Stats Section -->
-  <section class="stats py-5 bg-dark text-light">
-    <div class="container text-center ">
+  <section class="stats py-5 bg-dark text-light ">
+    <div class="container text-center">
       <h2>إحصائيات الموقع</h2>
-      <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+      <div class="row row-cols-1 row-cols-md-3 g-4 mt-4 justify-content-center">
         <div class="col ">
           <div class="card shadow-sm p-4 bg-light text-dark">
             <h3 class="card-title">المستودعات</h3>
@@ -163,13 +163,22 @@
             <p class="card-text">{{ $userCount }}</p>
           </div>
         </div>
-        <div class="col">
+        <!-- <div class="col">
           <div class="card shadow-sm p-4 bg-light text-dark">
             <h3 class="card-title">التحديثات الشهرية</h3>
             <p class="card-text">250+</p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
 </x-layout>
+<style>
+
+.service-card:hover {
+    transform: scale(1.05); 
+    cursor: pointer; 
+    transition: transform 0.3s ease-in-out; 
+}
+
+    </style>

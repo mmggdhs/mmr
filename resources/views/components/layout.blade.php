@@ -86,7 +86,9 @@
                 </a>
               </li>
             @endguest
-
+              <li>
+                <a class="nav-link  fs-5" href="/">الرئيسية</a>
+              </li>
           </ul>
         </div>
       </div>
