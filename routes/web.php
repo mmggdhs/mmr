@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
     Route::get('/', [UserController::class,'home']);
+    Route::put('/profile/update', action: [UserController::class, 'update'])->name('profile.update');
+
     Route::get('/login',['as'=>'login','uses'=>function () {
         return view('pages.login');
     }]);

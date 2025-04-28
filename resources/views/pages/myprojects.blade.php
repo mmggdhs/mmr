@@ -1,3 +1,20 @@
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999;">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <script>
+       
+        setTimeout(function() {
+            var alert = document.querySelector('.alert');
+            if (alert) {
+                var bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            }
+        }, 3000);
+    </script>
+@endif
 <x-layout>
     <x-slot:title>my projects</x-slot>
     <section class="py-5 bg-dark">
@@ -10,11 +27,48 @@
                     <div class="user-info ms-4">
                         <h2>{{Auth::user()->name}} أهلاً بك</h2>
 
-                        <p>مطور برامج مفتوحة المصدر، مهتم بتطوير مشاريع Python و JavaScript.</p>
-                        <a href="#" class="btn btn-dark text-light">تعديل الملف الشخصي</a>
+                        <p>{{ Auth::user()->about }}</p>
+                        <button class="btn btn-dark text-light" data-bs-toggle="modal" data-bs-target="#editModal">تعديل الملف الشخصي</button>
                     </div>
                 </div>
             </div>
+
+<!--dd-->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editmodelLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark text-light rounded shadow-lg">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="editmodelLabel">تعديل الملف الشخصي</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+      </div>
+
+      <div class="modal-body">
+        <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
+            <div class="mb-3">
+                <label for="name" class="form-label">الاسم الكامل</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}" required>
+            </div>
+
+            
+            <div class="mb-3">
+                <label for="about" class="form-label">معلومات عنك</label>
+                <textarea class="form-control" id="about" name="about" rows="4" placeholder="اكتب نبذة قصيرة عنك...">{{ Auth::user()->about }}</textarea>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-light px-5">حفظ التعديلات</button>
+            </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
         <div class="container text-center">
             <h2 class="mb-3 text-light"> المشاريع الخاص بك</h2>
                 <!-- modal -->

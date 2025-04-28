@@ -45,7 +45,7 @@
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4 justify-content-center">
         <!-- Card 1 -->
         <div class="col">
-          <div class="card p-4 shadow-sm bg-dark text-light service-card" data-bs-toggle="modal" data-bs-target="#modal1">
+          <div class="card p-4 shadow-sm bg-dark text-light service-card d-flex flex-column h-100" data-bs-toggle="modal" data-bs-target="#modal1">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600 mb-4">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="17 8 12 3 7 8"/>
@@ -78,7 +78,7 @@
 
         <!-- Card 2 -->
         <div class="col">
-          <div class="card p-4 shadow-sm bg-dark text-light service-card" data-bs-toggle="modal" data-bs-target="#modal2">
+          <div class="card p-4 shadow-sm bg-dark text-light service-card d-flex flex-column h-100" data-bs-toggle="modal" data-bs-target="#modal2">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600 mb-4">
               <path d="m18 16 4-4-4-4"/>
               <path d="m6 8-4 4 4 4"/>
@@ -111,7 +111,7 @@
 
         <!-- Card 3 -->
         <div class="col">
-          <div class="card p-4 shadow-sm bg-dark text-light service-card" data-bs-toggle="modal" data-bs-target="#modal3">
+          <div class="card p-4 shadow-sm bg-dark text-light service-card d-flex flex-column h-100" data-bs-toggle="modal" data-bs-target="#modal3">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600 mb-4">
               <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
               <circle cx="9" cy="7" r="4"/>

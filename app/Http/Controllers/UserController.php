@@ -77,4 +77,18 @@ class UserController extends Controller{
             return redirect('/email/verify');     
 
     }
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name'=>"",
+            'about' => 'required|string|max:1000', // تحقق من المدخلات
+        ]);
+
+        $user = Auth::user();
+        $user->about = $request->about;
+        $user->name = $request->name;
+        $user->save();
+
+        return redirect()->back()->with('success', 'تم تحديث الوصف بنجاح!');
+    }
 }
