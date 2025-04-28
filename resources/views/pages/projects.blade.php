@@ -30,14 +30,17 @@
             </form>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 <!-- Card -->
-                @foreach ($projects as $pro )
-                        <x-card 
-                            title="{{$pro->title}}" 
-                            text="{{$pro->content}}" 
-                            lang="{{$pro->lang}}" 
-                            link="{{url('project',$pro->id)}}" 
-                            isAlow={{false}}
-                        />  
+                {{-- <h2 class="text-light">{{$reports}}</h2> --}}
+                @foreach ($projects as $project)
+                            <x-card 
+                                title="{{$project->title}}"
+                                text="{{$project->content}}"
+                                lang="{{$project->lang}}"
+                                id="{{$project->id}}"
+                                reportsCount="{{$reports->where('project_id',$project->id)->count()}}"
+                                link="{{url('project',$project->id)}}"
+                                isAlow={{false}}
+                            />
                 @endforeach
             </div>   
         </div>

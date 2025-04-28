@@ -24,7 +24,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">إضافة مشروع جديد</h1>
+                            <h1 class="modal-title fs-3" id="exampleModalLabel">إضافة مشروع جديد</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body bg-dark">
@@ -37,16 +37,13 @@
                                 </ul>
                             </div>
                             @endif
-
                            <form action="/project/add" method="post" accept="application/json" enctype="multipart/form-data" class="bg-dark p-4 rounded shadow-lg text-light">
                             @csrf
-                            <h2 class="mb-4 text-center">إضافة مشروع جديد</h2>
-
+                            {{-- <h2 class="mb-4 text-center">إضافة مشروع جديد</h2> --}}
                             <!-- <div class="mb-3">
                                 <label for="title" class="form-label">عنوان المشروع</label>
                                 <input type="text" class="form-control" name="title" id="title" placeholder="أدخل عنوان المشروع">
                             </div> -->
-
                             <div class="mb-3">
                                 <label for="Content-text" class="form-label">وصف المشروع</label>
                                 <textarea class="form-control" id="Content-text" name="content" rows="4" placeholder="اكتب وصفًا مختصرًا عن المشروع"></textarea>
@@ -72,66 +69,84 @@
                             </div>
 
                             <div class="mb-3" id="video_div">
-                            <label class="form-label d-block">فيديو المشروع</label>
-                            <label for="formvideo" class="btn bg-light w-100" id="lable_video">📁 اختر فيديو المشروع (الحد 30MB)</label>
-                            <input type="file" class="d-none" id="formvideo" name="video" accept="video/*" onchange="showVideoName(this)">
-                            <div id="video-name" class="text-info mt-2 fst-italic text-center" style="min-height: 1.5rem;"> 
-                            </div>
+                                <label class="form-label">هل تريد رفع فيديو لمشروعك أو موقعك؟</label>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="has_link" id="video_yes" value="yes" onchange="toggleVidioInput()">
+                                    <label class="form-check-label" for="video_yes">نعم</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="has_link" id="video_no" value="no" onchange="toggleVidioInput()" checked>
+                                    <label class="form-check-label" for="has_video_no">لا</label>
+                                </div>
+                                <div class="" id="video_field" style="display: none;">
+                                    <label class="form-label d-block">فيديو المشروع</label>
+                                    <label for="formvideo" class="btn bg-light w-100" id="lable_video">📁 اختر فيديو المشروع (الحد 30MB)</label>
+                                    <input type="file" class="d-none" id="formvideo" name="video" accept="video/*" onchange="showVideoName(this)">
+                                    <div id="video-name" class="text-info mt-2 fst-italic text-center" style="min-height: 1.5rem;"> 
+                                    </div>
+                                </div>
                             </div>
                             <div class="mb-3">
-                        <label class="form-label">هل لديك رابط لمشروعك أو موقعك؟</label>
-                        <br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="has_link" id="link_yes" value="yes" onchange="toggleLinkInput()">
-                            <label class="form-check-label" for="link_yes">نعم</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="has_link" id="link_no" value="no" onchange="toggleLinkInput()" checked>
-                            <label class="form-check-label" for="has_link_no">لا</label>
-                        </div>
-                    </div>
+                                <label class="form-label">هل لديك رابط لمشروعك أو موقعك؟</label>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="has_link" id="link_yes" value="yes" onchange="toggleLinkInput()">
+                                    <label class="form-check-label" for="link_yes">نعم</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="has_link" id="link_no" value="no" onchange="toggleLinkInput()" checked>
+                                    <label class="form-check-label" for="has_link_no">لا</label>
+                                </div>
+                            </div>
+                            <div class="mb-3" id="link_field" style="display: none;">
+                                <label for="project_link" class="form-label">رابط المشروع أو الموقع</label>
+                                <input type="url" class="form-control" id="link" name="link" placeholder="أدخل الرابط هنا" />
+                            </div>
+                                    <script>
+                                        function showVideoName(input) {
+                                            const label = document.getElementById('video-name');
+                                            if (input.files.length > 0) {
+                            
+                                                document.getElementById('lable_video').innerText=`${input.files[0].name}`;
+                                                label.innerHTML = `✅ تم اختيار <strong></strong>`;
+                                            
 
-                 
-                    <div class="mb-3" id="link_field" style="display: none;">
-                        <label for="project_link" class="form-label">رابط المشروع أو الموقع</label>
-                        <input type="url" class="form-control" id="link" name="link" placeholder="أدخل الرابط هنا" />
-                    </div>
-                            <script>
-                                function showVideoName(input) {
-                                    const label = document.getElementById('video-name');
-                                    if (input.files.length > 0) {
-                    
-                                        document.getElementById('lable_video').innerText=`${input.files[0].name}`;
-                                        label.innerHTML = `✅ تم اختيار <strong></strong>`;
-                                       
-
-                                    } else {
-                                        label.innerHTML = "لم يتم اختيار أي فيديو بعد.";
-                                    }
-                                    }
-                                    // عرض تاق كتابة الرابط
-                                        function toggleLinkInput() {
-                                        var yesRadio = document.getElementById('link_yes');
-                                        var linkField = document.getElementById('link_field');
-                                        
-                                       
-                                        if (yesRadio.checked) {
-                                            linkField.style.display = 'block';
-                                        } else {
-                                            linkField.style.display = 'none';
-                                        }
-                                    }
-                            </script>
-
-                            <button type="submit" class="btn btn-primary w-100">إضافة المشروع</button>
-                        </form>
-
-
-                        </div>
-                 
+                                            } else {
+                                                label.innerHTML = "لم يتم اختيار أي فيديو بعد.";
+                                            }
+                                            }
+                                            // عرض تاق كتابة الرابط
+                                            function toggleLinkInput() {
+                                                var yesRadio = document.getElementById('link_yes');
+                                                var linkField = document.getElementById('link_field');
+                                                
+                                            
+                                                if (yesRadio.checked) {
+                                                    linkField.style.display = 'block';
+                                                } else {
+                                                    linkField.style.display = 'none';
+                                                }
+                                            }
+                                            function toggleVidioInput() {
+                                                var yesRadio = document.getElementById('video_yes');
+                                                var linkField = document.getElementById('video_field');
+                                                
+                                                if (yesRadio.checked) {
+                                                    linkField.style.display = 'block';
+                                                } else {
+                                                    linkField.style.display = 'none';
+                                                }
+                                            }
+                                    </script>
+                                     <button type="submit" class="btn btn-primary w-100">إضافة المشروع</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+               
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 <!-- File Card 1 -->
                 @foreach ($projects as $pro )
@@ -139,9 +154,12 @@
                         title="{{$pro->title}}" 
                         text="{{$pro->content}}" 
                         lang="{{$pro->lang}}" 
+                        reportsCount="{{$reports->where('project_id',$pro->id)->count()}}"
                         link="{{url('project',$pro->id)}}"
+                        id="{{$pro->id}}"
                         isAlow={{true}} 
                         del="{{url('project/delete',$pro->id)}}" 
+                        
                     />  
                 @endforeach
             </div>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class  Project extends Model{
 
@@ -18,5 +19,9 @@ class  Project extends Model{
     ];
 
     public $timestamps = false;
+
+    // public static function devName(){
+    //     DB::table('projects')->join('users','projects.dev_id','=','users.id')->get();
+    // }
 
 }

@@ -3,7 +3,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Reports;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -18,7 +20,14 @@ class UserController extends Controller{
         $projects = Project::all();
         $projectCount = Project::count();
         $userCount =user::count();
-            return view('index',['projects'=>$projects,'projectCount' => $projectCount,'userCount'=>$userCount]);
+        $reports = Reports::all();
+            return view('index',
+            [
+            'projects'=>$projects,
+            'projectCount' => $projectCount,
+            'userCount'=>$userCount,
+            'reports'=>$reports            
+            ]);
     }
 
     public function login(Request $request)
@@ -62,9 +71,10 @@ class UserController extends Controller{
 
             $user = User::create($valid);
 
+            event(new Registered($user));
             Auth::login($user);
 
-            return redirect('/');     
+            return redirect('/email/verify');     
 
     }
 }

@@ -1,10 +1,10 @@
 <x-layout>
     <x-slot:title>home</x-slot>
   <!-- Hero Section -->
-<section class="py-5 text-light" style="background-image: url({{url('pro.png')}}); background-size: cover; background-position: center;">
-    <div class="container text-center">
-      <h4>إستكشف أكواد ومشاريع مفتوحة</h4>
-      <p class="mt-3"> هو المكان الذي يتم فيه بناء وتطوير البرمجيات والتعاون في المشاريع المفتوحة.</p>
+<section class="py-5 " style="background-image: url({{url('pro.png')}}); background-size: cover; background-position: center;">
+    <div class="container text-center text-light bg-dark rounded p-5 ">
+      <h4 class="fs-1 ">إستكشف أكواد ومشاريع مفتوحة</h4>
+      <p class="fs-5">  هو المكان الذي يتم فيه بناء وتطوير البرمجيات والتعاون في المشاريع مفتوحة المصدر</p>
     </div>
   </section>
   <!-- Featured Repositories Section -->
@@ -23,17 +23,19 @@
           </div>
         </div> --}}
         @isset($projects)
-          @if($projects->count() > 2)
-              @for ($i = 0;$i<3;$i++)
-                <x-card 
-                  title="{{$projects[$i]->title}}"
-                  text="{{$projects[$i]->content}}"
-                  lang="{{$projects[$i]->lang}}"
-                  link="{{url('project',$projects[$i]->id)}}"
-                  isAlow={{false}}
-                />
-              @endfor
-          @endif
+            @foreach ($projects as $index => $project)
+                @if ($index < 4)
+                      <x-card 
+                        title="{{$project->title}}"
+                        text="{{$project->content}}"
+                        lang="{{$project->lang}}"
+                        id="{{$project->id}}"
+                        reportsCount="{{$reports->where('project_id',$project->id)->count()}}"
+                        link="{{url('project',$project->id)}}"
+                        isAlow={{false}}
+                      />
+                @endif
+            @endforeach
         @endisset
   </section>
   <!-- Stats Section -->
