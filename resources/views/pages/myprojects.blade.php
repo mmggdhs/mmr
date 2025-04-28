@@ -220,4 +220,43 @@
         </div>
        
     </section>
+    <div class="container py-5 text-center">
+        <h2 class="mb-4">بلاغات</h2>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reportsModal">
+            عرض البلاغات
+        </button>
+    </div>
+
+                                        <!--modile reports-->
+    <div class="modal fade" id="reportsModal" tabindex="-1" aria-labelledby="reportsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content rounded-3 shadow-lg">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="reportsModalLabel">قائمة البلاغات</h5>
+        <button type="button" class="btn-close ms-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="background-color: #f8f9fa; padding: 2rem;">
+        
+        <div class="row justify-content-center">
+          <div class="col-12">
+            @foreach($reports as $report)
+              <div class="report-card justify-content-center align-items-center mb-3 p-3 bg-white rounded-3 shadow-sm">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h5 class="text-dark mb-0">تفاصيل البلاغ</h5> 
+                </div>
+                <p class="mb-2 text-muted" style="font-size: 1.1rem;">{{ $report->details }}</p> 
+                <small class="text-secondary" style="font-size: 0.9rem;">تاريخ البلاغ: {{ $report->date->format('d-m-Y') }}</small>
+              </div>
+            @endforeach
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </x-layout>
