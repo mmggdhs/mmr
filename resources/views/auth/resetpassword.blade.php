@@ -1,10 +1,9 @@
 <x-layout>
-    <x-slot:title>login</x-slot>
+    <x-slot:title>resert password</x-slot>
         <div class="d-flex justify-content-center align-items-center vh-100">
-
             <!-- Login card -->
             <div class="card shadow-sm p-4 bg-light" dir="rtl" style="max-width: 400px; width: 100%;">
-                <h3 class="text-center mb-4 text-dark">تسجيل الدخول</h3>
+                <h3 class="text-center mb-4 text-dark">إستعادة كلمة المرور </h3>
                 @if($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -15,31 +14,29 @@
                 </div>
                 @endif
                 <!-- Form to login -->
-                <form action="/login" method="POST">
+                <form action="{{url('/reset-password')}}" method="POST">
                     @csrf
                     <!-- Email input -->
                     <div class="mb-3">
                         <label for="email" class="form-label">البريد الإلكتروني</label>
                         <input type="email" class="form-control" name="email" id="email" placeholder="أدخل بريدك الإلكتروني" required>
                     </div>
-    
-                    <!-- Password input -->
                     <div class="mb-3">
-                        <label for="password" class="form-label">كلمة المرور</label>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="أدخل كلمة المرور" required>
+                        <label for="password" class="form-label">كلمة المرور </label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder=" كلمة المرور " required>
                     </div>
-    
+                    <div class="mb-3">
+                        <label for="password_confirmation" class="form-label"> تأكيد كلمة المرور </label>
+                        <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="تأكيد كلمة المرور " required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="hidden" class="form-control" name="token" id="token" value="{{$token}}">
+                    </div>
                     <!-- Submit button -->
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-dark text-light">تسجيل الدخول</button>
+                        <button type="submit" class="btn btn-dark text-light"> إرسال</button>
                     </div>
                 </form>
-                <!-- Footer text with registration link -->
-                <div class="text-center mt-3">
-                    <p>ليس لديك حساب؟ <a href="/sign">التسجيل الآن</a></p>
-                    <p>نسيت كلمة المرور؟ <a href="/forgot-password"> استعادة</a></p>
-                </div>
             </div>
-    
         </div>
 </x-layout>

@@ -171,7 +171,8 @@ class ProjectsController extends Controller{
         return response()->download($zippath)->deleteFileAfterSend();        
     }
     function search(Request $request){
-      
+            $reports = Reports::all();
+
             $search = $request->input('search');
             $lang = $request->input('lang');
             // $results = null;
@@ -182,6 +183,6 @@ class ProjectsController extends Controller{
                 $results = Project::where('title','like',"%$search%")->get();
             }
 
-            return view('pages.projects',['projects'=>$results]); 
+            return view('pages.projects',['projects'=>$results,'reports'=>$reports]); 
     }
 }
