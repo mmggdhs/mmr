@@ -1,4 +1,4 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 <x-layout>
     <x-slot:title>project</x-slot>
 <div class="container mt-5 mb-5 ">

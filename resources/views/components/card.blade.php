@@ -1,23 +1,20 @@
-<div class="col">
- 
-    <div class="card  bg-light h-100" >
-    <div class="d-flex justify-content-between w-100">
-    <button type="button" class="btn btn-danger text-dark w-25 m-1" data-bs-toggle="modal" data-bs-target="#reportModal-{{$id}}">
-        إبلاغ
-        <i class="bi bi-flag">{{$reportsCount}}</i> 
-    </button>
-   
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reportsModal">
-        عرض البلاغات
-    </button>
-    
-    
-   
-</div>
-
-        
-        
-
+        <div class="col">
+            <div class="card  bg-light h-100" >
+            <div class="d-flex justify-content-between w-100">
+            @if (!$isAlow)
+            <button type="button" class="btn btn-danger text-dark w-25 m-1" data-bs-toggle="modal" data-bs-target="#reportModal-{{$id}}">
+                <i class="bi bi-flag"> بلاغ  {{$reportsCount}}</i> 
+            </button>
+            @else
+            <button type="button" class="btn btn-danger text-dark w-25 m-1" data-bs-toggle="modal" data-bs-target="#reportsModal">
+                <i class="bi bi-flag"> بلاغ  {{$reportsCount}}</i> 
+            </button>
+            @endif
+          
+            {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reportsModal">
+                عرض البلاغات
+            </button> --}}
+        </div>
         <div class="card-body text-center text-dark d-flex flex-column" >
             <div class="rounded-circle d-inline-block mx-auto" id="card" style="width: 50px; height: 50px; "></div>
             <h3 class="card-title mt-3">{{$title}}</h3>
