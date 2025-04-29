@@ -19,8 +19,13 @@ class ReportsController extends Controller{
         ]);
         return back();
     }
-    public function getreports(){
-        
-    }
+    public function getreports(string $id)
+{
+    
+    $reports = Reports::where('project_id', $id)->get();
+
+    
+    return view('pages.myprojects', compact('reports'));
+}
 }
 
