@@ -6,11 +6,30 @@
                 <i class="bi bi-flag"> بلاغ  {{$reportsCount}}</i> 
             </button>
             @else
-            <button type="button" class="btn btn-danger text-dark w-25 m-1" data-bs-toggle="modal" data-bs-target="#reportsModal">
-                <i class="bi bi-flag"> بلاغ  {{$reportsCount}}</i> 
-            </button>
+            <form action="{{route('reports.show',$id)}}">
+                <button type="submit"  class="btn btn-danger text-dark  m-1" >
+                    <i class="bi bi-flag"> بلاغ  {{$reportsCount}}</i> 
+                </button>
+            </form>
+         
             @endif
-          
+            <script>
+                let arr = [
+                    {"lang":"javascript","color":"#f0db4f"},
+                    {"lang":"html","color":"#e34f26"},
+                    {"lang":"python","color":"#306998"},
+                    {"lang":"css","color":"#264de4"},
+                    {"lang":"php","color":"#333"},
+                    {"lang":"java","color":"#333"},
+                ];
+                
+            
+                arr.forEach((e)=>{
+                    if("{{$lang}}" == e.lang){
+                        document.getElementById('card').style.backgroundColor = e.color;
+                    }
+                });
+            </script>
             {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reportsModal">
                 عرض البلاغات
             </button> --}}
@@ -96,23 +115,7 @@
         </div>
     </div>
 </div>
-<script>
-    let arr = [
-        {"lang":"javascript","color":"#f0db4f"},
-        {"lang":"html","color":"#e34f26"},
-        {"lang":"python","color":"#306998"},
-        {"lang":"css","color":"#264de4"},
-        {"lang":"php","color":"#333"},
-        {"lang":"java","color":"#333"},
-    ];
-    
 
-    arr.map((e)=>{
-        if("{{$lang}}" == e.lang){
-            document.getElementById('card').style.backgroundColor = e.color;
-        }
-    });
-</script>
 <div class="modal fade" id="reportModal-{{$id}}" tabindex="-1" aria-labelledby="reportModalLabel-{{$id}}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -131,7 +134,7 @@
             @endif
             <div class="modal-body">
                 <!-- Form to report -->
-                <form action="{{url('/reports/add')}}" method="POST">
+                <form action="{{url(path: '/reports/add')}}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="project_id" class="form-label">رقم المشروع</label>

@@ -116,7 +116,6 @@ class ProjectsController extends Controller{
     public function getproject(string $id){
         $project = Project::find($id);
         $file = $project->file;
-        $link=$project->link;
         $path = Storage::disk('local')->path($file);
         $video = $project->video ? asset('storage/' . $project->video):null;
 
@@ -135,21 +134,11 @@ class ProjectsController extends Controller{
             // $files = File::files($filespath);
             $files = File::allFiles($filespath);
             
-            // dd($folders);
-            // $content = [];
-            foreach($files as $f){
-                $content[]=[
-                    'filename'=>$f->getRelativePathname(),
-                    'content'=>File::get($f)
-                ];
-            }
             return view('pages.project',[
                 'project'=>$project,
                 'files'=>$files,
                 'name'=>$name,
-                'video'=>$video,
-                'link'=>$link]); 
-            
+                'video'=>$video]);  
             
         }
        

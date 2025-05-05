@@ -199,15 +199,54 @@
                         </div>
                     </div>
                 </div>
-
-               
+                @php
+                $id = request()->route('id');
+                 @endphp
+                @isset($id)
+                <!--modile reports-->
+                <div class="mb-3" >
+                    <div class="modal-dialog modal-lg bg-light rounded">
+                    <div class="modal-content rounded shadow-lg ">
+                        <div class=" bg-danger text-white text-center p-1 rounded-1">
+                        <h5 class="modal-title " id="reportsModalLabel">قائمة البلاغات</h5>
+                        {{-- <button type="button" class="btn-close ms-0" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                        </div>
+                        <div class="modal-body" style="background-color: #f8f9fa; padding: 2rem;">
+                        
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                            <div class="d-flex justify-content-center align-items-center mb-2">
+                                {{-- <h5 class="text-dark mb-0">تفاصيل البلاغ</h5>  --}}
+                                </div>
+                                @isset($reports)
+                                
+                                    <h3 class="bold "> المشروع : {{$id}}</h3>
+                                    @foreach( $reports as $report)
+                                        @if ($report['project_id'] == $id)
+                                            <div class="report-card justify-content-center align-items-center mb-3 p-3 bg-white rounded-3 shadow-sm">
+                                                <p class="mb-2 text-muted" style="font-size: 1.1rem;">{{$report['id'] ."- ". $report['details'] }}</p> 
+                                                <small class="text-secondary" style="font-size: 0.9rem;">تاريخ البلاغ: {{ $report['date']}}</small>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endisset
+                            </div>
+                        </div>
+                        </div>
+                        <a class="btn btn-secondary rounded-1" href="/myprojects">اخفاء</a>
+                    </div>
+                    </div>
+  </div>
+                @endisset
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 <!-- File Card 1 -->
+                     
                 @foreach ($projects as $pro )
                     <x-card 
                         title="{{$pro->title}}" 
                         text="{{$pro->content}}" 
-                        lang="{{$pro->lang}}" 
+                        lang="{{$pro->lang}}"
+                        reports="{{$reports->where('project_id',$pro->id)}}"
                         reportsCount="{{$reports->where('project_id',$pro->id)->count()}}"
                         link="{{url('project',$pro->id)}}"
                         id="{{$pro->id}}"
@@ -225,38 +264,5 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reportsModal">
             عرض البلاغات
         </button>
-    </div> --}}
-
-                                        <!--modile reports-->
-    <div class="modal fade" id="reportsModal" tabindex="-1" aria-labelledby="reportsModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content rounded-3 shadow-lg">
-      <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title" id="reportsModalLabel">قائمة البلاغات</h5>
-        <button type="button" class="btn-close ms-0" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" style="background-color: #f8f9fa; padding: 2rem;">
-        
-        <div class="row justify-content-center">
-          <div class="col-12">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <h5 class="text-dark mb-0">تفاصيل البلاغ</h5> 
-              </div>
-            @foreach($reports as $report)
-              <div class="report-card justify-content-center align-items-center mb-3 p-3 bg-white rounded-3 shadow-sm">
-                <p class="mb-2 text-muted" style="font-size: 1.1rem;">{{ $report->details }}</p> 
-                <small class="text-secondary" style="font-size: 0.9rem;">تاريخ البلاغ: {{ $report->date->format('d-m-Y') }}</small>
-              </div>
-            @endforeach
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+    </div> --}}                           
 </x-layout>

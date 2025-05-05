@@ -96,7 +96,8 @@ use Illuminate\Support\Str;
     Route::get('/project/{id}',[ProjectsController::class,'getproject']);
     Route::get('/project/download/{name}',[ProjectsController::class,'downloadproject']);
     Route::get('projects/search',[ProjectsController::class,'search']);
-    Route::middleware('verified')->
+
+    Route::middleware(['verified'])->
     controller(ProjectsController::class)->
     group(function(){
             Route::get('/myprojects','showmyproject');
@@ -113,6 +114,8 @@ use Illuminate\Support\Str;
     controller(ReportsController::class)->
     group(function(){
         Route::post('/reports/add','addreport');
+        Route::get('/reports/{id}',[ReportsController::class,'getreports'])->name('reports.show');
+
     });
 
 

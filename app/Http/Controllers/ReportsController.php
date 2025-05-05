@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\Reports;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,11 +22,11 @@ class ReportsController extends Controller{
     }
     public function getreports(string $id)
 {
-    
-    $reports = Reports::where('project_id', $id)->get();
+    $projects = Project::all()->where('dev_id',Auth::user()->id);
+    $reports = Reports::all();
 
     
-    return view('pages.myprojects', compact('reports'));
+    return view('pages.myprojects', ['reports'=>$reports,'projects'=>$projects]);
 }
 }
 
